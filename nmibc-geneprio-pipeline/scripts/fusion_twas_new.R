@@ -212,17 +212,12 @@ for(i in seq_len(nrow(wgtlist))) {
   )
 }
 
-# Bonferroni correction and output
+# Write ALL results per chromosome (no Bonferroni applied here)
+write.table(out, opt$out, sep="\t", quote=FALSE, row.names=FALSE)
 
-# Get tested genes
-tested <- !is.na(out$TWAS.P)
-N_eff <- sum(tested)
+# Write skip log
+skip_file <- sub("\\.txt$", ".skipped_genes.tsv", opt$out)
+write.table(skip_log, skip_file, sep="\t", quote=FALSE, row.names=FALSE)
 
-# Set Bonferroni threshold to 0.05 / 1679
-Pcrit <- 0.05 / 1679
-significant <- subset(out, tested & TWAS.P < Pcrit)
-
-# Save significant results
-sign_file <- sub("\\.txt$", ".significant.txt", opt$out)
-write.table(significant, sign_file, sep = "\t", quote = FALSE, row.names = FALSE)
-
+cat(sprintf("Genes attempted: %d\n", nrow(out)))
+cat(sprintf("Genes tested: %d\n", sum(!is.na(out$TWAS.P))))
