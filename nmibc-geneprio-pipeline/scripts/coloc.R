@@ -20,7 +20,7 @@
 #'    - Parses variant IDs to extract chromosome, position, reference, and alternate alleles.
 #'    - Computes effect sizes, variances, and minor allele frequencies.
 #'    - Estimates standard deviation of the eQTL trait.
-#' 4. **Lead SNP Identification**: Selects lead SNPs based on p-value thresholds in both datasets.
+#' 4. **Lead SNP Identification**: Selects lead SNPs based on p-value thresholds in GWAS dataset.
 #' 5. **Locus Definition**: For each lead SNP, defines a locus window and extracts overlapping variants from both datasets.
 #' 6. **Colocalization Analysis**: Runs `coloc.abf` for each locus to compute posterior probabilities for five hypotheses (H0-H4).
 #' 7. **Results Output**:
